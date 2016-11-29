@@ -3,6 +3,12 @@ django-debug-toolbar-force
 ==========================
 Show `django-debug-toolbar` in non- or partial-HTML views.
 
+Prerequisites
+=============
+- Django 1.8, 1.9, 1.10
+- django-debug-toolbar 1.5 (may work on earlier versions as well, although
+  not guaranteed).
+
 Installation
 ============
 (1) Install latest stable version from PyPI:
@@ -30,6 +36,26 @@ end.
 .. code-block:: text
 
     GET http://localhost:8000/foo/json-view/?debug-toolbar
+
+Testing
+=======
+Simply type:
+
+.. code-block:: sh
+
+    ./runtests.py
+
+or use tox:
+
+.. code-block:: sh
+
+    tox
+
+or use tox to check specific env:
+
+.. code-block:: sh
+
+    tox -e py35
 
 License
 =======
