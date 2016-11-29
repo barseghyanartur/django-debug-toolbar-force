@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block nav-menu %}
+<ul class="button-group">
+
+<li><a href="{% url 'foo.ajax_view' %}" class="button foo-ajax-view">{% trans "AJAX view" %}</a></li>
+<li><a href="{% url 'foo.json_view' %}" class="button foo-json-view">{% trans "JSON view" %}</a></li>
+<li><a href="{% url 'foo.partial_html_view' %}" class="button foo-partial-html-view">{% trans "Partial HTML view" %}</a></li>
+<li><a href="{% url 'foo.html_view' %}" class="button foo-html-view">{% trans "HTML view" %}</a></li>
+
+</ul>
+{% endblock nav-menu %}

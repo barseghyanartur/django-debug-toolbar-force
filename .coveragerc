@@ -1,0 +1,5 @@
+[run]
+omit =
+    src/debug_toolbar_force/tests/*
+    example/simple/settings/*
+    example/simple/wsgi.py

@@ -1,0 +1,43 @@
+import os
+
+from .core import PROJECT_DIR
+
+
+DEBUG = True
+DEBUG_TOOLBAR = not True
+TEMPLATE_DEBUG = True
+DEV = True
+
+DATABASES = {
+    'default': {
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.sqlite3',
+        # Or path to database file if using sqlite3.
+        'NAME': PROJECT_DIR('../../db/example.db'),
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'ddtf',
+        # 'TEST_NAME': 'ddtf_test',
+        # The following settings are not used with sqlite3:
+        'USER': 'root',
+        'PASSWORD': 'test',
+        # Empty for localhost through domain sockets or '127.0.0.1' for
+        # localhost through TCP.
+        'HOST': '',
+        # Set to empty string for default.
+        'PORT': '',
+    }
+}
+
+INTERNAL_IPS = ('127.0.0.1',)
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = PROJECT_DIR('../../tmp')
+
+DEFAULT_FROM_EMAIL = '<no-reply@dev.ddtf.mail.example.com>'
+
+# LANGUAGE_CODE = 'nl'
+
+os.environ.setdefault(
+    'DEBUG_TOOLBAR_FORCE_SOURCE_PATH',
+    '/home/user/repositories/django-debug-toolbar-force/src'
+)
