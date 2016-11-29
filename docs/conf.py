@@ -24,49 +24,190 @@ sys.path.insert(0, os.path.abspath('../src'))
 sys.path.insert(0, os.path.abspath('../examples'))
 try:
     import debug_toolbar_force
-    from simple import settings as example_settings
+    from simple import settings as docs_settings
     version = debug_toolbar_force.__version__
     project = debug_toolbar_force.__title__
     copyright = debug_toolbar_force.__copyright__
-except Exception as e:
+except Exception as err:
     version = '0.1'
     project = u'django-debug-toolbar-force'
     copyright = u'2016, Artur Barseghyan <artur.barseghyan@gmail.com>'
 
 # -- Django configuration ------------------------------------------------------
+
+try:
+    from simple import settings as docs_settings
+except Exception as e:
+    PROJECT_DIR = lambda base : os.path.abspath(os.path.join(os.path.dirname(__file__), base).replace('\\','/'))
+    gettext = lambda s: s
+    DEBUG_TEMPLATE = False
+    # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+    BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+    class DocsSettings(object):
+        """Docs settings."""
+        INSTALLED_APPS = (
+            # Django core and contrib apps
+            'django.contrib.auth',
+            'django.contrib.contenttypes',
+            'django.contrib.sessions',
+            'django.contrib.sites',
+            'django.contrib.messages',
+            'django.contrib.staticfiles',
+            'django.contrib.admin',
+            'django.contrib.sitemaps',
+
+            # Other project specific apps
+            'debug_toolbar_force.tests.foo',  # Test app
+        )
+
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': PROJECT_DIR('../db/example.db'),
+            }
+        }
+        MEDIA_ROOT = PROJECT_DIR(os.path.join('..', 'media'))
+        MEDIA_URL = '/media/'
+        MIDDLEWARE_CLASSES = (
+            'django.contrib.sessions.middleware.SessionMiddleware',
+            'django.middleware.locale.LocaleMiddleware',
+            'django.middleware.common.CommonMiddleware',
+            'django.middleware.csrf.CsrfViewMiddleware',
+            'django.contrib.auth.middleware.AuthenticationMiddleware',
+            'django.contrib.messages.middleware.MessageMiddleware',
+            # Uncomment the next line for simple clickjacking protection:
+            # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        )
+        ROOT_URLCONF = 'urls'
+        SECRET_KEY = '97818c*w97Zi8a-m^1coRRrmurMI6+q5_kyn*)s@(*_Pk6q423'
+        SITE_ID = 1
+        STATICFILES_DIRS = (
+            PROJECT_DIR(os.path.join('..', 'media', 'static')),
+        )
+        STATICFILES_FINDERS = (
+            'django.contrib.staticfiles.finders.FileSystemFinder',
+            'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+            # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+        )
+        STATIC_URL = '/static/'
+        STATIC_ROOT = PROJECT_DIR(os.path.join('..', 'static'))
+
+        if versions.DJANGO_GTE_1_10:
+            TEMPLATES = [
+                {
+                    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                    # 'APP_DIRS': True,
+                    'DIRS': [PROJECT_DIR(os.path.join('..', 'templates'))],
+                    'OPTIONS': {
+                        'context_processors': [
+                            "django.template.context_processors.debug",
+                            'django.template.context_processors.request',
+                            "django.contrib.auth.context_processors.auth",
+                            "django.contrib.messages.context_processors.messages",
+                            # "context_processors.testing",  # Testing
+                        ],
+                        'loaders': [
+                            'django.template.loaders.filesystem.Loader',
+                            'django.template.loaders.app_directories.Loader',
+                            'django.template.loaders.eggs.Loader',
+                        ],
+                        'debug': DEBUG_TEMPLATE,
+                    }
+                },
+            ]
+        elif versions.DJANGO_GTE_1_8:
+            TEMPLATES = [
+                {
+                    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                    # 'APP_DIRS': True,
+                    'DIRS': [PROJECT_DIR(os.path.join('..', 'templates'))],
+                    'OPTIONS': {
+                        'context_processors': [
+                            "django.contrib.auth.context_processors.auth",
+                            "django.template.context_processors.debug",
+                            "django.template.context_processors.i18n",
+                            "django.template.context_processors.media",
+                            "django.template.context_processors.static",
+                            "django.template.context_processors.tz",
+                            "django.contrib.messages.context_processors.messages",
+                            "django.template.context_processors.request",
+                            # "context_processors.testing",  # Testing
+                        ],
+                        'loaders': [
+                            'django.template.loaders.filesystem.Loader',
+                            'django.template.loaders.app_directories.Loader',
+                            'django.template.loaders.eggs.Loader',
+                        ],
+                        'debug': DEBUG_TEMPLATE,
+                    }
+                },
+            ]
+        else:
+            TEMPLATE_DEBUG = DEBUG_TEMPLATE
+
+            # List of callables that know how to import templates from various
+            # sources.
+            TEMPLATE_LOADERS = (
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+                'django.template.loaders.eggs.Loader',
+            )
+
+            TEMPLATE_CONTEXT_PROCESSORS = (
+                "django.contrib.auth.context_processors.auth",
+                "django.core.context_processors.debug",
+                "django.core.context_processors.i18n",
+                "django.core.context_processors.media",
+                "django.core.context_processors.static",
+                "django.core.context_processors.tz",
+                "django.contrib.messages.context_processors.messages",
+                "django.core.context_processors.request",
+            )
+
+            TEMPLATE_DIRS = (
+                # Put strings here, like "/home/html/django_templates" or
+                # "C:/www/django/templates".
+                # Always use forward slashes, even on Windows.
+                # Don't forget to use absolute paths, not relative paths.
+                PROJECT_DIR(os.path.join('..', 'templates')),
+            )
+    # END class ExampleSettings()
+
+    docs_settings = DocsSettings()
+
 from django.conf import settings
 
 if not settings.configured:
-    INSTALLED_APPS = list(example_settings.INSTALLED_APPS)
+    INSTALLED_APPS = list(docs_settings.INSTALLED_APPS)
 
     if 'foo' in INSTALLED_APPS:
         INSTALLED_APPS.remove('debug_toolbar_force.tests.foo')
 
     configure_kwargs = {
-        'DATABASES': example_settings.DATABASES,
-        'INSTALLED_APPS': INSTALLED_APPS,
-        'MEDIA_ROOT': example_settings.MEDIA_ROOT,
-        'MEDIA_URL': example_settings.MEDIA_URL,
-        'MIDDLEWARE_CLASSES': example_settings.MIDDLEWARE_CLASSES,
-        'ROOT_URLCONF': example_settings.ROOT_URLCONF,
-        'SECRET_KEY': example_settings.SECRET_KEY,
-        'SITE_ID': example_settings.SITE_ID,
-        'STATICFILES_DIRS': example_settings.STATICFILES_DIRS,
-        'STATICFILES_FINDERS': example_settings.STATICFILES_FINDERS,
-        'STATIC_URL': example_settings.STATIC_URL,
-        'STATIC_ROOT': example_settings.STATIC_ROOT,
+        'DATABASES': docs_settings.DATABASES,
+        'INSTALLED_APPS': docs_settings.INSTALLED_APPS,
+        'MEDIA_ROOT': docs_settings.MEDIA_ROOT,
+        'MEDIA_URL': docs_settings.MEDIA_URL,
+        'MIDDLEWARE_CLASSES': docs_settings.MIDDLEWARE_CLASSES,
+        'ROOT_URLCONF': docs_settings.ROOT_URLCONF,
+        'SECRET_KEY': docs_settings.SECRET_KEY,
+        'SITE_ID': docs_settings.SITE_ID,
+        'STATICFILES_DIRS': docs_settings.STATICFILES_DIRS,
+        'STATICFILES_FINDERS': docs_settings.STATICFILES_FINDERS,
+        'STATIC_URL': docs_settings.STATIC_URL,
+        'STATIC_ROOT': docs_settings.STATIC_ROOT,
     }
 
     if versions.DJANGO_GTE_1_8:
-        configure_kwargs.update({'TEMPLATES':example_settings.TEMPLATES})
+        configure_kwargs.update({'TEMPLATES': docs_settings.TEMPLATES})
     else:
         configure_kwargs.update({
             'TEMPLATE_CONTEXT_PROCESSORS':
-                example_settings.TEMPLATE_CONTEXT_PROCESSORS,
-            'TEMPLATE_DIRS': example_settings.TEMPLATE_DIRS,
-            'TEMPLATE_LOADERS': example_settings.TEMPLATE_LOADERS,
+                docs_settings.TEMPLATE_CONTEXT_PROCESSORS,
+            'TEMPLATE_DIRS': docs_settings.TEMPLATE_DIRS,
+            'TEMPLATE_LOADERS': docs_settings.TEMPLATE_LOADERS,
         })
-
 
     settings.configure(**configure_kwargs)
 
