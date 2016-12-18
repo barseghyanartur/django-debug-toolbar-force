@@ -4,7 +4,7 @@ from .core import PROJECT_DIR
 
 
 DEBUG = True
-DEBUG_TOOLBAR = not True
+DEBUG_TOOLBAR = False
 TEMPLATE_DEBUG = True
 DEV = True
 

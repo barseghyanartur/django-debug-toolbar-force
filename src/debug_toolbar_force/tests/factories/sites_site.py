@@ -18,7 +18,9 @@ class SiteFactory(DjangoModelFactory):
     domain = Faker('domain_name')
     name = Faker('domain_name')
 
-    class Meta:
+    class Meta(object):
+        """Meta."""
+
         model = Site
 
 
@@ -27,7 +29,7 @@ class DefaultSiteFactory(SiteFactory):
 
     id = settings.SITE_ID
 
-    class Meta:
+    class Meta(object):
         """Meta class."""
 
         model = Site

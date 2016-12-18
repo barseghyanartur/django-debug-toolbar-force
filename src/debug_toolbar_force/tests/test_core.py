@@ -38,8 +38,9 @@ class DebugToolbarForceCoreTest(TestCase):
     def __test_view(self, reverse_url, force=True):
         url = self.__get_url(reverse_url, force=force)
         response = self.client.get(url)
-        self.soup = BeautifulSoup(response.content, "html.parser")
-        ddt_div = self.soup.find('div', attrs={'id': self.ddt_element_id})
+        response_content = getattr(response, 'content', "")
+        soup = BeautifulSoup(response_content, "html.parser")
+        ddt_div = soup.find('div', attrs={'id': self.ddt_element_id})
         self.assertIsNotNone(ddt_div)
         return ddt_div
 

@@ -7,6 +7,8 @@
 .travis.yml~
 .cache/
 .coverage
+/htmlcov/
+*.py,cover
 
 MANIFEST.in~
 MIND_BUCKET.rst
