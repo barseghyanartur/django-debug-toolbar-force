@@ -2,11 +2,13 @@ import os
 from setuptools import setup, find_packages
 
 try:
-    readme = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
+    readme = open(
+        os.path.join(os.path.dirname(__file__), 'README.rst')
+    ).read()
 except:
     readme = ''
 
-version = '0.1'
+version = '0.1.1'
 
 install_requires = [
     'six>=1.4.1',

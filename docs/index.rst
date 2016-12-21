@@ -14,20 +14,20 @@ Installation
 ============
 (1) Install latest stable version from PyPI:
 
-.. code-block:: sh
+    .. code-block:: sh
 
-    pip install django-debug-toolbar-force
+        pip install django-debug-toolbar-force
 
 (2) Add ``debug_toolbar_force.middleware.ForceDebugToolbarMiddleware`` to
     ``MIDDLEWARE_CLASSES`` of the your projects' Django settings (you would
     typically do that in your dev settings only).
 
-.. code-block:: python
+    .. code-block:: python
 
-    MIDDLEWARE_CLASSES += (
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
-        'debug_toolbar_force.middleware.ForceDebugToolbarMiddleware',
-    )
+        MIDDLEWARE_CLASSES += (
+            'debug_toolbar.middleware.DebugToolbarMiddleware',
+            'debug_toolbar_force.middleware.ForceDebugToolbarMiddleware',
+        )
 
 Usage
 =====
