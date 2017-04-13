@@ -12,7 +12,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 DEBUG = False
 DEBUG_TOOLBAR = False
-TEMPLATE_DEBUG = DEBUG
 DEV = False
 
 ADMINS = (

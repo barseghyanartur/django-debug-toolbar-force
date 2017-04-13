@@ -93,5 +93,5 @@ INTERNAL_IPS = ('127.0.0.1', '*',)
 
 DEBUG = True
 DEBUG_TOOLBAR = True
-TEMPLATE_DEBUG = True
+DEBUG_TEMPLATE = True
 DEV = True

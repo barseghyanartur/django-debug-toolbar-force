@@ -37,7 +37,7 @@ except Exception as err:
 
 try:
     from simple import settings as docs_settings
-except Exception as e:
+except Exception as err:
     PROJECT_DIR = lambda base : os.path.abspath(os.path.join(os.path.dirname(__file__), base).replace('\\','/'))
     gettext = lambda s: s
     DEBUG_TEMPLATE = False

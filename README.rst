@@ -1,12 +1,12 @@
 ==========================
 django-debug-toolbar-force
 ==========================
-Show `django-debug-toolbar` in non- or partial-HTML views.
+Show ``django-debug-toolbar`` in non- or partial-HTML views.
 
 Prerequisites
 =============
-- Python 2.7.x, 3.4.x, 3.5.x
-- Django 1.8, 1.9, 1.10
+- Python 2.7, 3.4, 3.5, 3.6
+- Django 1.8, 1.9, 1.10, 1.11
 - django-debug-toolbar 1.5 (may work on earlier versions as well, although
   not guaranteed).
 

@@ -2,23 +2,23 @@ from django.core.management import call_command
 
 from .base import (
     is_app_setup_completed,
-    mark_app_setup_as_completed
+    mark_app_setup_as_completed,
 )
 
 from .factories import (
     SiteFactory,
     SuperAdminUserFactory,
-    UserFactory
+    UserFactory,
 )
 
 __title__ = 'debug_toolbar_force.tests.helpers'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016 Artur Barseghyan'
+__copyright__ = '2016-2017 Artur Barseghyan'
 __license__ = 'GPL 2.0/LGPL 2.1'
 __all__ = (
-    'setup_app',
-    'get_or_create_admin_user',
     'create_test_data',
+    'get_or_create_admin_user',
+    'setup_app',
 )
 
 

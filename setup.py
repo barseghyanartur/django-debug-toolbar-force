@@ -1,5 +1,5 @@
 import os
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 try:
     readme = open(
@@ -8,7 +8,7 @@ try:
 except:
     readme = ''
 
-version = '0.1.1'
+version = '0.1.2'
 
 install_requires = [
     'six>=1.4.1',
@@ -29,11 +29,14 @@ tests_require = [
 setup(
     name='django-debug-toolbar-force',
     version=version,
-    description="Force debugging of non-HTML views in django-debug-toolbar.",
+    description="Force debugging of partial- or non-HTML views in "
+                "django-debug-toolbar.",
     long_description=readme,
     classifiers=[
         "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
         "Environment :: Web Environment",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "License :: OSI Approved :: GNU Lesser General Public License v2 or "
