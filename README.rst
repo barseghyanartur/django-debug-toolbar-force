@@ -10,12 +10,6 @@ Prerequisites
 - django-debug-toolbar 1.5 (may work on earlier versions as well, although
   not guaranteed).
 
-Documentation
-=============
-
-Documentation is available on `Read the Docs
-<http://django-debug-toolbar-force.readthedocs.io/>`_.
-
 Installation
 ============
 (1) Install latest stable version from PyPI:

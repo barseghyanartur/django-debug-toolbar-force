@@ -1,16 +1,15 @@
 
-Docs
-====
+Documentation
+===============================================
 Contents:
 
 .. toctree::
    :maxdepth: 20
 
-   index
    debug_toolbar_force
 
 Indices and tables
-==================
+===============================================
 
 * :ref:`genindex`
 * :ref:`modindex`
