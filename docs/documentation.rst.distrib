@@ -7,6 +7,7 @@ Contents:
    :maxdepth: 20
 
    index
+   changelog
    debug_toolbar_force
 
 Indices and tables

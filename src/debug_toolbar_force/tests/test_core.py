@@ -4,12 +4,18 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
+
+from nine.versions import DJANGO_GTE_1_10
 
 from ..settings import GET_PARAM_NAME_FORCE
 from .base import log_info
 from .helpers import setup_app
+
+if DJANGO_GTE_1_10:
+    from django.urls import reverse
+else:
+    from django.core.urlresolvers import reverse
 
 __title__ = 'debug_toolbar_force.tests.test_core'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'

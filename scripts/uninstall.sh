@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 pip uninstall django-debug-toolbar-force -y
 rm build -rf
 rm dist -rf

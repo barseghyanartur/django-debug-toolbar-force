@@ -69,7 +69,7 @@ except Exception as err:
         }
         MEDIA_ROOT = PROJECT_DIR(os.path.join('..', 'media'))
         MEDIA_URL = '/media/'
-        MIDDLEWARE_CLASSES = (
+        _MIDDLEWARE_CLASSES = (
             'django.contrib.sessions.middleware.SessionMiddleware',
             'django.middleware.locale.LocaleMiddleware',
             'django.middleware.common.CommonMiddleware',
@@ -79,6 +79,11 @@ except Exception as err:
             # Uncomment the next line for simple clickjacking protection:
             # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
         )
+        if versions.DJANGO_GTE_1_11:
+            MIDDLEWARE = _MIDDLEWARE_CLASSES
+        else:
+            MIDDLEWARE_CLASSES = _MIDDLEWARE_CLASSES
+
         ROOT_URLCONF = 'urls'
         SECRET_KEY = '97818c*w97Zi8a-m^1coRRrmurMI6+q5_kyn*)s@(*_Pk6q423'
         SITE_ID = 1
@@ -110,7 +115,7 @@ except Exception as err:
                         'loaders': [
                             'django.template.loaders.filesystem.Loader',
                             'django.template.loaders.app_directories.Loader',
-                            'django.template.loaders.eggs.Loader',
+                            # 'django.template.loaders.eggs.Loader',
                         ],
                         'debug': DEBUG_TEMPLATE,
                     }

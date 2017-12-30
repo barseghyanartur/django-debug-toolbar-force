@@ -3,6 +3,7 @@ import json
 from django.http import HttpResponse
 from django.utils.translation import ugettext_lazy as _
 
+from nine.versions import DJANGO_GTE_2_0
 from six import text_type
 
 from .settings import GET_PARAM_NAME_FORCE, GET_PARAM_NAME_NON_AJAX
@@ -16,6 +17,21 @@ __all__ = ('ForceDebugToolbarMiddleware',)
 
 class ForceDebugToolbarMiddleware(object):
     """The `django-debug-toolbar` for views that do not return HTML."""
+
+    if DJANGO_GTE_2_0:
+        def __init__(self, get_response=None):
+            self.get_response = get_response
+            super(ForceDebugToolbarMiddleware, self).__init__()
+
+        def __call__(self, request):
+            response = None
+            if hasattr(self, 'process_request'):
+                response = self.process_request(request)
+            if not response:
+                response = self.get_response(request)
+            if hasattr(self, 'process_response'):
+                response = self.process_response(request, response)
+            return response
 
     def process_request(self, request):
         """Process request.
