@@ -4,16 +4,22 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
+
+from nine.versions import DJANGO_GTE_1_10
 
 from ..settings import GET_PARAM_NAME_FORCE
 from .base import log_info
 from .helpers import setup_app
 
+if DJANGO_GTE_1_10:
+    from django.urls import reverse
+else:
+    from django.core.urlresolvers import reverse
+
 __title__ = 'debug_toolbar_force.tests.test_core'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016 Artur Barseghyan'
+__copyright__ = '2016-2017 Artur Barseghyan'
 __license__ = 'GPL 2.0/LGPL 2.1'
 __all__ = ('DebugToolbarForceCoreTest',)
 
@@ -38,8 +44,9 @@ class DebugToolbarForceCoreTest(TestCase):
     def __test_view(self, reverse_url, force=True):
         url = self.__get_url(reverse_url, force=force)
         response = self.client.get(url)
-        self.soup = BeautifulSoup(response.content, "html.parser")
-        ddt_div = self.soup.find('div', attrs={'id': self.ddt_element_id})
+        response_content = getattr(response, 'content', "")
+        soup = BeautifulSoup(response_content, "html.parser")
+        ddt_div = soup.find('div', attrs={'id': self.ddt_element_id})
         self.assertIsNotNone(ddt_div)
         return ddt_div
 

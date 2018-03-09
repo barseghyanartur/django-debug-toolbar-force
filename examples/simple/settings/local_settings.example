@@ -4,8 +4,8 @@ from .core import PROJECT_DIR
 
 
 DEBUG = True
-DEBUG_TOOLBAR = not True
-TEMPLATE_DEBUG = True
+DEBUG_TOOLBAR = False
+DEBUG_TEMPLATE = True
 DEV = True
 
 DATABASES = {

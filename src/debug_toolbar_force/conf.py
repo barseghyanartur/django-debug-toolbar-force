@@ -4,7 +4,7 @@ from . import defaults
 
 __title__ = 'debug_toolbar_force.conf'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016 Artur Barseghyan'
+__copyright__ = '2016-2017 Artur Barseghyan'
 __license__ = 'GPL 2.0/LGPL 2.1'
 __all__ = ('get_setting',)
 
@@ -22,12 +22,11 @@ def get_setting(setting, override=None):
         None.
     :return: Setting value.
     """
-    if override is not None:
-        return override
-    if hasattr(settings, 'DEBUG_TOOLBAR_FORCE_{0}'.format(setting)):
-        return getattr(
-            settings,
-            'DEBUG_TOOLBAR_FORCE_{0}'.format(setting)
-        )
+    attr_name = 'DEBUG_TOOLBAR_FORCE_{0}'.format(setting)
+    if hasattr(settings, attr_name):
+        return getattr(settings, attr_name)
     else:
-        return getattr(defaults, setting)
+        if hasattr(defaults, setting):
+            return getattr(defaults, setting)
+        else:
+            return override

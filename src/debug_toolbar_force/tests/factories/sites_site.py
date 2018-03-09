@@ -7,7 +7,7 @@ from .factory_faker import Faker
 
 __title__ = 'debug_toolbar_force.tests.factories.sites_site'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016 Artur Barseghyan'
+__copyright__ = '2016-2017 Artur Barseghyan'
 __license__ = 'GPL 2.0/LGPL 2.1'
 __all__ = ('SiteFactory', 'DefaultSiteFactory',)
 
@@ -18,7 +18,9 @@ class SiteFactory(DjangoModelFactory):
     domain = Faker('domain_name')
     name = Faker('domain_name')
 
-    class Meta:
+    class Meta(object):
+        """Meta."""
+
         model = Site
 
 
@@ -27,7 +29,7 @@ class DefaultSiteFactory(SiteFactory):
 
     id = settings.SITE_ID
 
-    class Meta:
+    class Meta(object):
         """Meta class."""
 
         model = Site

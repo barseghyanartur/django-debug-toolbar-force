@@ -12,7 +12,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 DEBUG = False
 DEBUG_TOOLBAR = False
-TEMPLATE_DEBUG = DEBUG
 DEV = False
 
 ADMINS = (
@@ -133,7 +132,7 @@ if versions.DJANGO_GTE_1_10:
                 'loaders': [
                     'django.template.loaders.filesystem.Loader',
                     'django.template.loaders.app_directories.Loader',
-                    'django.template.loaders.eggs.Loader',
+                    # 'django.template.loaders.eggs.Loader',
                 ],
                 'debug': DEBUG_TEMPLATE,
             }
@@ -196,16 +195,28 @@ else:
         PROJECT_DIR(os.path.join('..', 'templates')),
     )
 
-MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+if versions.DJANGO_GTE_2_0:
+    MIDDLEWARE = [
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.locale.LocaleMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        # Uncomment the next line for simple clickjacking protection:
+        # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    ]
+else:
+    MIDDLEWARE_CLASSES = [
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.locale.LocaleMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        # Uncomment the next line for simple clickjacking protection:
+        # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    ]
 
 ROOT_URLCONF = 'urls'
 
@@ -334,19 +345,26 @@ except:
 
 def show_toolbar(request):
     """Determine whether to show the toolbar on a given page."""
-    return bool(DEBUG)
+    return bool(DEBUG_TOOLBAR)
 
 
-if DEBUG and DEBUG_TOOLBAR:
+# if DEBUG and DEBUG_TOOLBAR:
+if DEBUG_TOOLBAR:
     try:
         # Make sure the django-debug-toolbar is installed
         import debug_toolbar
 
         # debug_toolbar
-        MIDDLEWARE_CLASSES += (
-            'debug_toolbar.middleware.DebugToolbarMiddleware',
-            'debug_toolbar_force.middleware.ForceDebugToolbarMiddleware',
-        )
+        if versions.DJANGO_GTE_2_0:
+            MIDDLEWARE += (
+                'debug_toolbar.middleware.DebugToolbarMiddleware',
+                'debug_toolbar_force.middleware.ForceDebugToolbarMiddleware',
+            )
+        else:
+            MIDDLEWARE_CLASSES += (
+                'debug_toolbar.middleware.DebugToolbarMiddleware',
+                'debug_toolbar_force.middleware.ForceDebugToolbarMiddleware',
+            )
 
         INSTALLED_APPS += (
             'debug_toolbar',
