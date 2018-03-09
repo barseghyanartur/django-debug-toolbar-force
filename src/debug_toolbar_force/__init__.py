@@ -1,7 +1,7 @@
 __title__ = 'debug_toolbar_force'
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016-2017 Artur Barseghyan'
+__copyright__ = '2016-2018 Artur Barseghyan'
 __license__ = 'GPL 2.0/LGPL 2.1'
 __all__ = ('default_app_config',)
 

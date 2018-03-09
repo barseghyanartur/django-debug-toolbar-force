@@ -195,7 +195,7 @@ else:
         PROJECT_DIR(os.path.join('..', 'templates')),
     )
 
-if versions.DJANGO_GTE_2_0:
+if versions.DJANGO_GTE_1_10:
     MIDDLEWARE = [
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.locale.LocaleMiddleware',
@@ -355,7 +355,7 @@ if DEBUG_TOOLBAR:
         import debug_toolbar
 
         # debug_toolbar
-        if versions.DJANGO_GTE_2_0:
+        if versions.DJANGO_GTE_1_10:
             MIDDLEWARE += (
                 'debug_toolbar.middleware.DebugToolbarMiddleware',
                 'debug_toolbar_force.middleware.ForceDebugToolbarMiddleware',
