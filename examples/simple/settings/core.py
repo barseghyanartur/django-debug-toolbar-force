@@ -4,6 +4,7 @@ __all__ = (
     'project_dir',
     'gettext',
     'PROJECT_DIR',
+    'show_toolbar',
 )
 
 
@@ -18,3 +19,8 @@ def gettext(s):
 
 
 PROJECT_DIR = project_dir
+
+
+def show_toolbar(request):
+    """Determine whether to show the toolbar on a given page."""
+    return True
