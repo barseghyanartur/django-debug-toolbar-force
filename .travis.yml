@@ -33,6 +33,9 @@ matrix:
 install: pip install -r examples/requirements/testing.txt
 
 before_script:
-  - sleep 10
+  - sleep 1
+  - mkdir -p examples/media/static
+  - mkdir -p examples/logs/
+  - mkdir -p examples/db/
 
 script: travis_retry tox -e $TOX_ENV
