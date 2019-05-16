@@ -25,7 +25,6 @@ syntax: regexp
 ^examples/media/cache/
 ^examples/static/
 ^examples/simple/settings/local_settings\.py
-^examples/simple/settings/__init__\.py
 ^builddocs/
 ^builddocs\.zip
 ^build/

@@ -33,5 +33,4 @@ QUICK_START.rst
 /build/
 /dist/
 /src/django_debug_toolbar_force.egg-info
-/examples/simple/settings/__init__.py
 /examples/simple/settings/local_settings.py
