@@ -3,6 +3,18 @@ django-debug-toolbar-force
 ==========================
 Show ``django-debug-toolbar`` in non- or partial-HTML views.
 
+.. image:: https://img.shields.io/pypi/v/django-debug-toolbar-force.svg
+   :target: https://pypi.python.org/pypi/django-debug-toolbar-force
+   :alt: PyPI Version
+
+.. image:: https://img.shields.io/travis/barseghyanartur/django-debug-toolbar-force/master.svg
+   :target: http://travis-ci.org/barseghyanartur/django-debug-toolbar-force
+   :alt: Build Status
+
+.. image:: https://img.shields.io/badge/license-GPL--2.0--only%20OR%20LGPL--2.1--or--later-blue.svg
+   :target: https://github.com/barseghyanartur/django-debug-toolbar-force/#License
+   :alt: GPL-2.0-only OR LGPL-2.1-or-later
+
 Prerequisites
 =============
 - Python 2.7, 3.4, 3.5, 3.6 and 3.7.
@@ -78,7 +90,7 @@ or use tox to check specific env:
 
 License
 =======
-GPL 2.0/LGPL 2.1
+GPL-2.0-only OR LGPL-2.1-or-later
 
 Support
 =======
