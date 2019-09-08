@@ -7,6 +7,10 @@ Show ``django-debug-toolbar`` in non- or partial-HTML views.
    :target: https://pypi.python.org/pypi/django-debug-toolbar-force
    :alt: PyPI Version
 
+.. image:: https://img.shields.io/pypi/pyversions/django-debug-toolbar-force.svg
+    :target: https://pypi.python.org/pypi/django-debug-toolbar-force/
+    :alt: Supported Python versions
+
 .. image:: https://img.shields.io/travis/barseghyanartur/django-debug-toolbar-force/master.svg
    :target: http://travis-ci.org/barseghyanartur/django-debug-toolbar-force
    :alt: Build Status
@@ -14,6 +18,10 @@ Show ``django-debug-toolbar`` in non- or partial-HTML views.
 .. image:: https://img.shields.io/badge/license-GPL--2.0--only%20OR%20LGPL--2.1--or--later-blue.svg
    :target: https://github.com/barseghyanartur/django-debug-toolbar-force/#License
    :alt: GPL-2.0-only OR LGPL-2.1-or-later
+
+.. image:: https://coveralls.io/repos/github/barseghyanartur/django-debug-toolbar-force/badge.svg?branch=master
+    :target: https://coveralls.io/github/barseghyanartur/django-debug-toolbar-force?branch=master
+    :alt: Coverage
 
 Prerequisites
 =============
@@ -86,7 +94,7 @@ or use tox to check specific env:
 
 .. code-block:: sh
 
-    tox -e py35
+    tox -e py36
 
 License
 =======
