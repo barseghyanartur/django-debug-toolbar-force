@@ -6,8 +6,6 @@ try:
 except:
     pass
 
-
-
 if DEBUG and DEBUG_TOOLBAR:
     try:
         # Make sure the django-debug-toolbar is installed

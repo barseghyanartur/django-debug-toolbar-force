@@ -95,6 +95,7 @@ DEBUG = True
 DEBUG_TOOLBAR = True
 DEBUG_TEMPLATE = True
 DEV = True
+DEBUG_TOOLBAR_FORCE_GET_PARAM_NAME_FORCE = 'debug-toolbar'
 
 if DEBUG and DEBUG_TOOLBAR:
     try:

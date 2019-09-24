@@ -4,10 +4,12 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from django.test import TestCase, Client
+from django.test import TestCase, Client, override_settings
+from django.utils.encoding import smart_text
 
 from nine.versions import DJANGO_GTE_1_10
 
+from ..conf import get_setting
 from ..settings import GET_PARAM_NAME_FORCE
 from .base import log_info
 from .helpers import setup_app
@@ -16,8 +18,6 @@ if DJANGO_GTE_1_10:
     from django.urls import reverse
 else:
     from django.core.urlresolvers import reverse
-
-from django.utils.encoding import smart_text
 
 __title__ = 'debug_toolbar_force.tests.test_core'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
@@ -57,18 +57,19 @@ class DebugToolbarForceCoreTest(TestCase):
         """Test that the body is unchanged in force mode
 
         (other than html and formatting and links etc)"""
-        resp_noforce = self.client.get(self.__get_url(reverse_url, force=False))
-        resp_force= self.client.get(self.__get_url(reverse_url, force=True))
+        resp_no_force = self.client.get(
+            self.__get_url(reverse_url, force=False)
+        )
+        resp_force = self.client.get(self.__get_url(reverse_url, force=True))
 
         soup = BeautifulSoup(resp_force.content, "html.parser")
-        body_noforce = resp_noforce.content
+        body_no_force = resp_no_force.content
         body_force = list(soup.find('body').children)[0]
 
         def canonic(txt):
             return smart_text(txt).strip()
 
-        self.assertEqual(canonic(body_noforce), canonic(body_force))
-
+        self.assertEqual(canonic(body_no_force), canonic(body_force))
 
     @log_info
     def test_01_json_view(self):
@@ -97,13 +98,28 @@ class DebugToolbarForceCoreTest(TestCase):
 
     @log_info
     def test_06_json_view_unchanged(self):
-        """Test JSON view body content is not being changed"""
+        """Test JSON view body content is not being changed."""
         return self.__test_view_unchanged('foo.json_view')
 
     @log_info
     def test_07_json_bytes_view_unchanged(self):
-        """Test JSON view returning bytes body content is not being changed"""
+        """Test JSON view returning bytes body content is not being changed."""
         return self.__test_view_unchanged('foo.json_bytes_view')
+
+    @log_info
+    @override_settings(
+        DEBUG_TOOLBAR_FORCE_GET_PARAM_NAME_FORCE='debug-toolbar-force',
+        DEBUG_TOOLBAR_FORCE_GET_PARAM_NAME_NON_AJAX='dtf-non-ajax'
+    )
+    def test_08_settings(self):
+        """Test settings."""
+        self.assertEqual(
+            get_setting('GET_PARAM_NAME_FORCE'), 'debug-toolbar-force'
+        )
+        self.assertEqual(
+            get_setting('GET_PARAM_NAME_NON_AJAX'),
+            'dtf-non-ajax'
+        )
 
 
 if __name__ == '__main__':

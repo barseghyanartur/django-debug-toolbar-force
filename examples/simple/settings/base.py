@@ -239,6 +239,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
 
     # Other project specific apps
+    # 'debug_toolbar_force',  # Test app
     'debug_toolbar_force.tests.foo',  # Test app
 ]
 
