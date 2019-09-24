@@ -1,7 +1,7 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 
-from six import text_type
+import json
 
 __title__ = 'debug_toolbar_force.tests.foo.views'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
@@ -17,8 +17,13 @@ __all__ = (
 
 def json_view(request):
     """JSON view."""
-    return JsonResponse(text_type([1, 2, 3]), safe=False)
+    # Standard Django way, content will be unicode
+    return JsonResponse([1, 2, 3], safe=False)
 
+def json_bytes_view(request):
+    """JSON view, returns bytes"""
+    # Something an application may do is return bytes instead of unicode
+    return HttpResponse(json.dumps([1, 2, 3]), content_type="application/json")
 
 def ajax_view(request, template_name='foo/ajax_view.html'):
     """AJAX view."""

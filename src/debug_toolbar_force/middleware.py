@@ -2,9 +2,9 @@ import json
 
 from django.http import HttpResponse
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import  smart_text
 
 from nine.versions import DJANGO_GTE_1_10
-from six import text_type
 
 from .settings import GET_PARAM_NAME_FORCE, GET_PARAM_NAME_NON_AJAX
 
@@ -60,13 +60,8 @@ class ForceDebugToolbarMiddleware(object):
                                         len(response.content))
                 response = HttpResponse(new_content)
             elif response['Content-Type'] != 'text/html':
-                content = response.content
-                try:
-                    json_ = json.loads(text_type(content))
-                    content = json.dumps(json_, sort_keys=True, indent=2)
-                except ValueError:
-                    pass
-                response = HttpResponse('<html><body>{}'
-                                        '</body></html>'.format(content))
+                content = smart_text(response.content)
+                response = HttpResponse(u'<html><body>{}'
+                                        u'</body></html>'.format(content))
 
         return response

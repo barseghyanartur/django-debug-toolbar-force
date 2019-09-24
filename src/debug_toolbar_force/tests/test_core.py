@@ -17,6 +17,8 @@ if DJANGO_GTE_1_10:
 else:
     from django.core.urlresolvers import reverse
 
+from django.utils.encoding import smart_text
+
 __title__ = 'debug_toolbar_force.tests.test_core'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
 __copyright__ = '2016-2019 Artur Barseghyan'
@@ -51,24 +53,57 @@ class DebugToolbarForceCoreTest(TestCase):
         return ddt_div
 
     @log_info
+    def __test_view_unchanged(self, reverse_url):
+        """Test that the body is unchanged in force mode
+
+        (other than html and formatting and links etc)"""
+        resp_noforce = self.client.get(self.__get_url(reverse_url, force=False))
+        resp_force= self.client.get(self.__get_url(reverse_url, force=True))
+
+        soup = BeautifulSoup(resp_force.content, "html.parser")
+        body_noforce = resp_noforce.content
+        body_force = list(soup.find('body').children)[0]
+
+        def canonic(txt):
+            return smart_text(txt).strip()
+
+        self.assertEqual(canonic(body_noforce), canonic(body_force))
+
+
+    @log_info
     def test_01_json_view(self):
         """Test JSON view."""
         return self.__test_view('foo.json_view')
 
     @log_info
-    def test_02_ajax_view(self):
+    def test_02_json_bytes_view(self):
+        """Test JSON view returning bytes."""
+        return self.__test_view('foo.json_bytes_view')
+
+    @log_info
+    def test_03_ajax_view(self):
         """Test AJAX view."""
         return self.__test_view('foo.ajax_view')
 
     @log_info
-    def test_03_html_view(self):
+    def test_04_html_view(self):
         """Test HTML view."""
         return self.__test_view('foo.html_view')
 
     @log_info
-    def test_04_partial_html_view(self):
+    def test_05_partial_html_view(self):
         """Test partial HTML view."""
         return self.__test_view('foo.partial_html_view')
+
+    @log_info
+    def test_06_json_view_unchanged(self):
+        """Test JSON view body content is not being changed"""
+        return self.__test_view_unchanged('foo.json_view')
+
+    @log_info
+    def test_07_json_bytes_view_unchanged(self):
+        """Test JSON view returning bytes body content is not being changed"""
+        return self.__test_view_unchanged('foo.json_bytes_view')
 
 
 if __name__ == '__main__':
