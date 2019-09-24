@@ -15,6 +15,10 @@ Show ``django-debug-toolbar`` in non- or partial-HTML views.
    :target: http://travis-ci.org/barseghyanartur/django-debug-toolbar-force
    :alt: Build Status
 
+.. image:: https://readthedocs.org/projects/django-debug-toolbar-force/badge/?version=latest
+    :target: http://django-debug-toolbar-force.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 .. image:: https://img.shields.io/badge/license-GPL--2.0--only%20OR%20LGPL--2.1--or--later-blue.svg
    :target: https://github.com/barseghyanartur/django-debug-toolbar-force/#License
    :alt: GPL-2.0-only OR LGPL-2.1-or-later
