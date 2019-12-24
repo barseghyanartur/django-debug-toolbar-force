@@ -1,10 +1,9 @@
-import json
-
 from django.http import HttpResponse
-from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import  smart_text
+from django.utils.encoding import smart_str
+from django.utils.translation import gettext_lazy as _
 
 from nine.versions import DJANGO_GTE_1_10
+
 
 from .settings import GET_PARAM_NAME_FORCE, GET_PARAM_NAME_NON_AJAX
 
@@ -39,7 +38,7 @@ class ForceDebugToolbarMiddleware(object):
         If `GET_PARAM_NAME_NON_AJAX` is present in request.GET, set
         request.is_ajax to False.
         """
-        non_ajax = True if GET_PARAM_NAME_NON_AJAX in request.GET else False
+        non_ajax = GET_PARAM_NAME_NON_AJAX in request.GET
         if non_ajax:
             request.is_ajax = False
         return None
@@ -50,7 +49,7 @@ class ForceDebugToolbarMiddleware(object):
         If `GET_PARAM_NAME_FORCE` is present in request.GET wrap response
         in <html><body>{{ response }}</body></html>.
         """
-        debug = True if GET_PARAM_NAME_FORCE in request.GET else False
+        debug = GET_PARAM_NAME_FORCE in request.GET
 
         if debug:
             if response['Content-Type'] == 'application/octet-stream':
@@ -60,7 +59,7 @@ class ForceDebugToolbarMiddleware(object):
                                         len(response.content))
                 response = HttpResponse(new_content)
             elif response['Content-Type'] != 'text/html':
-                content = smart_text(response.content)
+                content = smart_str(response.content)
                 response = HttpResponse(u'<html><body>{}'
                                         u'</body></html>'.format(content))
 
