@@ -8,11 +8,11 @@ try:
 except:
     readme = ''
 
-version = '0.1.7'
+version = '0.1.8'
 
 install_requires = [
     'six>=1.4.1',
-    'django-nine>=0.1.10',
+    'django-nine>=0.2.3',
 ]
 
 tests_require = [
@@ -38,6 +38,7 @@ setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Environment :: Web Environment",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "License :: OSI Approved :: GNU Lesser General Public License v2 or "
