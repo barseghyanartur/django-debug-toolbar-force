@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from django.test import TestCase, Client, override_settings
 from django.utils.encoding import smart_text
 
-from nine.versions import DJANGO_GTE_1_10
+from django_nine.versions import DJANGO_GTE_1_10
 
 from ..conf import get_setting
 from ..settings import GET_PARAM_NAME_FORCE
