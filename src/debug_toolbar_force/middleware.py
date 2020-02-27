@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.utils.encoding import smart_str
 from django.utils.translation import gettext_lazy as _
 
-from nine.versions import DJANGO_GTE_1_10
+from django_nine.versions import DJANGO_GTE_1_10
 
 
 from .settings import GET_PARAM_NAME_FORCE, GET_PARAM_NAME_NON_AJAX
