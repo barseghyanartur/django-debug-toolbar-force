@@ -53,12 +53,6 @@ Installation
 
         pip install https://github.com/barseghyanartur/django-debug-toolbar-force/archive/stable.tar.gz
 
-    or latest stable version from BitBucket:
-
-    .. code-block:: sh
-
-        pip install https://bitbucket.org/barseghyanartur/django-debug-toolbar-force/get/stable.tar.gz
-
 (2) Add ``debug_toolbar_force.middleware.ForceDebugToolbarMiddleware`` to
     ``MIDDLEWARE`` (or ``MIDDLEWARE_CLASSES`` for older versions of Django)
     of the your projects' Django settings (you would
