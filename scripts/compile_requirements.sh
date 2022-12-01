@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 cd examples/requirements/
 
-echo "pip-compile common.in"
-pip-compile common.in "$@" --resolver=backtracking
-
 echo "pip-compile debug.in"
 pip-compile debug.in "$@" --resolver=backtracking
 
