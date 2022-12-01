@@ -1,15 +1,15 @@
 import logging
 
-__author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016-2022 Artur Barseghyan'
-__license__ = 'GPL-2.0-only OR LGPL-2.1-or-later'
+__author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+__copyright__ = "2016-2022 Artur Barseghyan"
+__license__ = "GPL-2.0-only OR LGPL-2.1-or-later"
 __all__ = (
-    'app_setup',
-    'is_app_setup_completed',
-    'LOG_INFO',
-    'log_info',
-    'mark_app_setup_as_completed',
-    'skip',
+    "app_setup",
+    "is_app_setup_completed",
+    "LOG_INFO",
+    "log_info",
+    "mark_app_setup_as_completed",
+    "skip",
 )
 
 
@@ -27,16 +27,17 @@ def log_info(func):
         """Inner."""
         result = func(self, *args, **kwargs)
 
-        LOGGER.info('\n%s', func.__name__)
-        LOGGER.info('============================')
+        LOGGER.info("\n%s", func.__name__)
+        LOGGER.info("============================")
         if func.__doc__:
             LOGGER.info('""" %s """', func.__doc__.strip())
-        LOGGER.info('----------------------------')
+        LOGGER.info("----------------------------")
         if result is not None:
             LOGGER.info(result)
-        LOGGER.info('\n')
+        LOGGER.info("\n")
 
         return result
+
     return inner
 
 
@@ -45,11 +46,13 @@ SKIP = False
 
 def skip(func):
     """Simply skip the test."""
+
     def inner(self, *args, **kwargs):
         """Inner."""
         if SKIP:
             return
         return func(self, *args, **kwargs)
+
     return inner
 
 
@@ -59,6 +62,7 @@ class AppSetup(object):
     Created in order to avoid the app test data to be initialised
     multiple times.
     """
+
     def __init__(self):
         self.is_done = False
 

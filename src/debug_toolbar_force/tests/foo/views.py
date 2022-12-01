@@ -4,15 +4,15 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 
 
-__author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016-2022 Artur Barseghyan'
-__license__ = 'GPL-2.0-only OR LGPL-2.1-or-later'
+__author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+__copyright__ = "2016-2022 Artur Barseghyan"
+__license__ = "GPL-2.0-only OR LGPL-2.1-or-later"
 __all__ = (
-    'ajax_view',
-    'html_view',
-    'json_bytes_view',
-    'json_view',
-    'partial_html_view',
+    "ajax_view",
+    "html_view",
+    "json_bytes_view",
+    "json_view",
+    "partial_html_view",
 )
 
 
@@ -28,16 +28,16 @@ def json_bytes_view(request):
     return HttpResponse(json.dumps([1, 2, 3]), content_type="application/json")
 
 
-def ajax_view(request, template_name='foo/ajax_view.html'):
+def ajax_view(request, template_name="foo/ajax_view.html"):
     """AJAX view."""
-    return render(request, template_name, {'data': [1, 2, 3]})
+    return render(request, template_name, {"data": [1, 2, 3]})
 
 
-def partial_html_view(request, template_name='foo/partial_html_view.html'):
+def partial_html_view(request, template_name="foo/partial_html_view.html"):
     """Partial HTML view."""
-    return render(request, template_name, {'data': [1, 2, 3]})
+    return render(request, template_name, {"data": [1, 2, 3]})
 
 
-def html_view(request, template_name='foo/html_view.html'):
+def html_view(request, template_name="foo/html_view.html"):
     """HTML view."""
-    return render(request, template_name, {'data': [1, 2, 3]})
+    return render(request, template_name, {"data": [1, 2, 3]})

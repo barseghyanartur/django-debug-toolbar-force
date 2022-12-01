@@ -6,27 +6,28 @@ from django_nine.versions import DJANGO_GTE_1_10
 
 from .settings import GET_PARAM_NAME_FORCE, GET_PARAM_NAME_NON_AJAX
 
-__author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016-2022 Artur Barseghyan'
-__license__ = 'GPL-2.0-only OR LGPL-2.1-or-later'
-__all__ = ('ForceDebugToolbarMiddleware',)
+__author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+__copyright__ = "2016-2022 Artur Barseghyan"
+__license__ = "GPL-2.0-only OR LGPL-2.1-or-later"
+__all__ = ("ForceDebugToolbarMiddleware",)
 
 
 class ForceDebugToolbarMiddleware(object):
     """The `django-debug-toolbar` for views that do not return HTML."""
 
     if DJANGO_GTE_1_10:
+
         def __init__(self, get_response=None):
             self.get_response = get_response
             super(ForceDebugToolbarMiddleware, self).__init__()
 
         def __call__(self, request):
             response = None
-            if hasattr(self, 'process_request'):
+            if hasattr(self, "process_request"):
                 response = self.process_request(request)
             if not response:
                 response = self.get_response(request)
-            if hasattr(self, 'process_response'):
+            if hasattr(self, "process_response"):
                 response = self.process_response(request, response)
             return response
 
@@ -50,15 +51,17 @@ class ForceDebugToolbarMiddleware(object):
         debug = GET_PARAM_NAME_FORCE in request.GET
 
         if debug:
-            if response['Content-Type'] == 'application/octet-stream':
-                new_content = '<html><body>' \
-                              '{}: {}</body></html>' \
-                              ''.format(_("Binary Data, Length"),
-                                        len(response.content))
+            if response["Content-Type"] == "application/octet-stream":
+                new_content = (
+                    "<html><body>"
+                    "{}: {}</body></html>"
+                    "".format(_("Binary Data, Length"), len(response.content))
+                )
                 response = HttpResponse(new_content)
-            elif response['Content-Type'] != 'text/html':
+            elif response["Content-Type"] != "text/html":
                 content = smart_str(response.content)
-                response = HttpResponse(u'<html><body>{}'
-                                        u'</body></html>'.format(content))
+                response = HttpResponse(
+                    "<html><body>{}" "</body></html>".format(content)
+                )
 
         return response

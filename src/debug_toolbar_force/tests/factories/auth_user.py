@@ -5,34 +5,34 @@ from factory.django import DjangoModelFactory
 
 from .factory_faker import Faker
 
-__title__ = 'debug_toolbar_force.tests.factories.auth_user'
-__author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016-2022 Artur Barseghyan'
-__license__ = 'GPL-2.0-only OR LGPL-2.1-or-later'
+__title__ = "debug_toolbar_force.tests.factories.auth_user"
+__author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+__copyright__ = "2016-2022 Artur Barseghyan"
+__license__ = "GPL-2.0-only OR LGPL-2.1-or-later"
 __all__ = (
-    'TEST_USERNAME',
-    'TEST_PASSWORD',
-    'AbstractUserFactory',
-    'InactiveUserFactory',
-    'UserFactory',
-    'StaffUserFactory',
-    'SuperuserUserFactory',
-    'SuperAdminUserFactory',
-    'TestUsernameSuperAdminUserFactory',
+    "TEST_USERNAME",
+    "TEST_PASSWORD",
+    "AbstractUserFactory",
+    "InactiveUserFactory",
+    "UserFactory",
+    "StaffUserFactory",
+    "SuperuserUserFactory",
+    "SuperAdminUserFactory",
+    "TestUsernameSuperAdminUserFactory",
 )
 
-TEST_USERNAME = 'test_user'
-TEST_PASSWORD = 'test_password'
+TEST_USERNAME = "test_user"
+TEST_PASSWORD = "test_password"
 
 
 class AbstractUserFactory(DjangoModelFactory):
     """Abstract factory for creating users."""
 
-    password = PostGenerationMethodCall('set_password', TEST_PASSWORD)
-    username = Sequence(lambda n: 'user%d' % n)
-    first_name = Faker('first_name')
-    last_name = Faker('last_name')
-    email = Faker('email')
+    password = PostGenerationMethodCall("set_password", TEST_PASSWORD)
+    username = Sequence(lambda n: "user%d" % n)
+    first_name = Faker("first_name")
+    last_name = Faker("last_name")
+    email = Faker("email")
 
     is_active = False
     is_staff = False
@@ -42,7 +42,7 @@ class AbstractUserFactory(DjangoModelFactory):
         """Meta."""
 
         model = settings.AUTH_USER_MODEL
-        django_get_or_create = ('username',)
+        django_get_or_create = ("username",)
         abstract = True
 
 
