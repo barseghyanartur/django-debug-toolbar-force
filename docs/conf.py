@@ -20,62 +20,70 @@ from nine import versions
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 # sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath('../src'))
-sys.path.insert(0, os.path.abspath('../examples'))
+sys.path.insert(0, os.path.abspath("../src"))
+sys.path.insert(0, os.path.abspath("../examples"))
 try:
     import debug_toolbar_force
     from simple import settings as docs_settings
+
     version = debug_toolbar_force.__version__
     project = debug_toolbar_force.__title__
     copyright = debug_toolbar_force.__copyright__
 except Exception as err:
-    version = '0.1'
-    project = u'django-debug-toolbar-force'
-    copyright = u'2016, Artur Barseghyan <artur.barseghyan@gmail.com>'
+    version = "0.1"
+    project = "django-debug-toolbar-force"
+    copyright = "2016-2022, Artur Barseghyan <artur.barseghyan@gmail.com>"
 
 # -- Django configuration ------------------------------------------------------
 
 try:
     from simple.settings import docs as docs_settings
 except Exception as err:
-    PROJECT_DIR = lambda base : os.path.abspath(os.path.join(os.path.dirname(__file__), base).replace('\\','/'))
-    gettext = lambda s: s
+
+    def PROJECT_DIR(base):
+        return os.path.abspath(
+            os.path.join(os.path.dirname(__file__), base).replace("\\", "/")
+        )
+
+    def gettext(s):
+        return s
+
     DEBUG_TEMPLATE = False
     # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
     class DocsSettings(object):
         """Docs settings."""
+
         INSTALLED_APPS = (
             # Django core and contrib apps
-            'django.contrib.auth',
-            'django.contrib.contenttypes',
-            'django.contrib.sessions',
-            'django.contrib.sites',
-            'django.contrib.messages',
-            'django.contrib.staticfiles',
-            'django.contrib.admin',
-            'django.contrib.sitemaps',
-
+            "django.contrib.auth",
+            "django.contrib.contenttypes",
+            "django.contrib.sessions",
+            "django.contrib.sites",
+            "django.contrib.messages",
+            "django.contrib.staticfiles",
+            "django.contrib.admin",
+            "django.contrib.sitemaps",
             # Other project specific apps
-            'debug_toolbar_force.tests.foo',  # Test app
+            "debug_toolbar_force.tests.foo",  # Test app
         )
 
         DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': PROJECT_DIR('../db/example.db'),
+            "default": {
+                "ENGINE": "django.db.backends.sqlite3",
+                "NAME": PROJECT_DIR("../db/example.db"),
             }
         }
-        MEDIA_ROOT = PROJECT_DIR(os.path.join('..', 'media'))
-        MEDIA_URL = '/media/'
+        MEDIA_ROOT = PROJECT_DIR(os.path.join("..", "media"))
+        MEDIA_URL = "/media/"
         _MIDDLEWARE_CLASSES = (
-            'django.contrib.sessions.middleware.SessionMiddleware',
-            'django.middleware.locale.LocaleMiddleware',
-            'django.middleware.common.CommonMiddleware',
-            'django.middleware.csrf.CsrfViewMiddleware',
-            'django.contrib.auth.middleware.AuthenticationMiddleware',
-            'django.contrib.messages.middleware.MessageMiddleware',
+            "django.contrib.sessions.middleware.SessionMiddleware",
+            "django.middleware.locale.LocaleMiddleware",
+            "django.middleware.common.CommonMiddleware",
+            "django.middleware.csrf.CsrfViewMiddleware",
+            "django.contrib.auth.middleware.AuthenticationMiddleware",
+            "django.contrib.messages.middleware.MessageMiddleware",
             # Uncomment the next line for simple clickjacking protection:
             # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
         )
@@ -84,51 +92,49 @@ except Exception as err:
         else:
             MIDDLEWARE_CLASSES = _MIDDLEWARE_CLASSES
 
-        ROOT_URLCONF = 'urls'
-        SECRET_KEY = '97818c*w97Zi8a-m^1coRRrmurMI6+q5_kyn*)s@(*_Pk6q423'
+        ROOT_URLCONF = "urls"
+        SECRET_KEY = "97818c*w97Zi8a-m^1coRRrmurMI6+q5_kyn*)s@(*_Pk6q423"
         SITE_ID = 1
-        STATICFILES_DIRS = (
-            PROJECT_DIR(os.path.join('..', 'media', 'static')),
-        )
+        STATICFILES_DIRS = (PROJECT_DIR(os.path.join("..", "media", "static")),)
         STATICFILES_FINDERS = (
-            'django.contrib.staticfiles.finders.FileSystemFinder',
-            'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+            "django.contrib.staticfiles.finders.FileSystemFinder",
+            "django.contrib.staticfiles.finders.AppDirectoriesFinder",
             # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
         )
-        STATIC_URL = '/static/'
-        STATIC_ROOT = PROJECT_DIR(os.path.join('..', 'static'))
+        STATIC_URL = "/static/"
+        STATIC_ROOT = PROJECT_DIR(os.path.join("..", "static"))
 
         if versions.DJANGO_GTE_1_10:
             TEMPLATES = [
                 {
-                    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                    "BACKEND": "django.template.backends.django.DjangoTemplates",
                     # 'APP_DIRS': True,
-                    'DIRS': [PROJECT_DIR(os.path.join('..', 'templates'))],
-                    'OPTIONS': {
-                        'context_processors': [
+                    "DIRS": [PROJECT_DIR(os.path.join("..", "templates"))],
+                    "OPTIONS": {
+                        "context_processors": [
                             "django.template.context_processors.debug",
-                            'django.template.context_processors.request',
+                            "django.template.context_processors.request",
                             "django.contrib.auth.context_processors.auth",
                             "django.contrib.messages.context_processors.messages",
                             # "context_processors.testing",  # Testing
                         ],
-                        'loaders': [
-                            'django.template.loaders.filesystem.Loader',
-                            'django.template.loaders.app_directories.Loader',
+                        "loaders": [
+                            "django.template.loaders.filesystem.Loader",
+                            "django.template.loaders.app_directories.Loader",
                             # 'django.template.loaders.eggs.Loader',
                         ],
-                        'debug': DEBUG_TEMPLATE,
-                    }
+                        "debug": DEBUG_TEMPLATE,
+                    },
                 },
             ]
         elif versions.DJANGO_GTE_1_8:
             TEMPLATES = [
                 {
-                    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                    "BACKEND": "django.template.backends.django.DjangoTemplates",
                     # 'APP_DIRS': True,
-                    'DIRS': [PROJECT_DIR(os.path.join('..', 'templates'))],
-                    'OPTIONS': {
-                        'context_processors': [
+                    "DIRS": [PROJECT_DIR(os.path.join("..", "templates"))],
+                    "OPTIONS": {
+                        "context_processors": [
                             "django.contrib.auth.context_processors.auth",
                             "django.template.context_processors.debug",
                             "django.template.context_processors.i18n",
@@ -139,13 +145,13 @@ except Exception as err:
                             "django.template.context_processors.request",
                             # "context_processors.testing",  # Testing
                         ],
-                        'loaders': [
-                            'django.template.loaders.filesystem.Loader',
-                            'django.template.loaders.app_directories.Loader',
-                            'django.template.loaders.eggs.Loader',
+                        "loaders": [
+                            "django.template.loaders.filesystem.Loader",
+                            "django.template.loaders.app_directories.Loader",
+                            "django.template.loaders.eggs.Loader",
                         ],
-                        'debug': DEBUG_TEMPLATE,
-                    }
+                        "debug": DEBUG_TEMPLATE,
+                    },
                 },
             ]
         else:
@@ -154,9 +160,9 @@ except Exception as err:
             # List of callables that know how to import templates from various
             # sources.
             TEMPLATE_LOADERS = (
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-                'django.template.loaders.eggs.Loader',
+                "django.template.loaders.filesystem.Loader",
+                "django.template.loaders.app_directories.Loader",
+                "django.template.loaders.eggs.Loader",
             )
 
             TEMPLATE_CONTEXT_PROCESSORS = (
@@ -175,8 +181,9 @@ except Exception as err:
                 # "C:/www/django/templates".
                 # Always use forward slashes, even on Windows.
                 # Don't forget to use absolute paths, not relative paths.
-                PROJECT_DIR(os.path.join('..', 'templates')),
+                PROJECT_DIR(os.path.join("..", "templates")),
             )
+
     # END class ExampleSettings()
 
     docs_settings = DocsSettings()
@@ -186,33 +193,34 @@ from django.conf import settings
 if not settings.configured:
     INSTALLED_APPS = list(docs_settings.INSTALLED_APPS)
 
-    if 'foo' in INSTALLED_APPS:
-        INSTALLED_APPS.remove('debug_toolbar_force.tests.foo')
+    if "foo" in INSTALLED_APPS:
+        INSTALLED_APPS.remove("debug_toolbar_force.tests.foo")
 
     configure_kwargs = {
-        'DATABASES': docs_settings.DATABASES,
-        'INSTALLED_APPS': docs_settings.INSTALLED_APPS,
-        'MEDIA_ROOT': docs_settings.MEDIA_ROOT,
-        'MEDIA_URL': docs_settings.MEDIA_URL,
-        'MIDDLEWARE_CLASSES': docs_settings.MIDDLEWARE_CLASSES,
-        'ROOT_URLCONF': docs_settings.ROOT_URLCONF,
-        'SECRET_KEY': docs_settings.SECRET_KEY,
-        'SITE_ID': docs_settings.SITE_ID,
-        'STATICFILES_DIRS': docs_settings.STATICFILES_DIRS,
-        'STATICFILES_FINDERS': docs_settings.STATICFILES_FINDERS,
-        'STATIC_URL': docs_settings.STATIC_URL,
-        'STATIC_ROOT': docs_settings.STATIC_ROOT,
+        "DATABASES": docs_settings.DATABASES,
+        "INSTALLED_APPS": docs_settings.INSTALLED_APPS,
+        "MEDIA_ROOT": docs_settings.MEDIA_ROOT,
+        "MEDIA_URL": docs_settings.MEDIA_URL,
+        "MIDDLEWARE_CLASSES": docs_settings.MIDDLEWARE_CLASSES,
+        "ROOT_URLCONF": docs_settings.ROOT_URLCONF,
+        "SECRET_KEY": docs_settings.SECRET_KEY,
+        "SITE_ID": docs_settings.SITE_ID,
+        "STATICFILES_DIRS": docs_settings.STATICFILES_DIRS,
+        "STATICFILES_FINDERS": docs_settings.STATICFILES_FINDERS,
+        "STATIC_URL": docs_settings.STATIC_URL,
+        "STATIC_ROOT": docs_settings.STATIC_ROOT,
     }
 
     if versions.DJANGO_GTE_1_8:
-        configure_kwargs.update({'TEMPLATES': docs_settings.TEMPLATES})
+        configure_kwargs.update({"TEMPLATES": docs_settings.TEMPLATES})
     else:
-        configure_kwargs.update({
-            'TEMPLATE_CONTEXT_PROCESSORS':
-                docs_settings.TEMPLATE_CONTEXT_PROCESSORS,
-            'TEMPLATE_DIRS': docs_settings.TEMPLATE_DIRS,
-            'TEMPLATE_LOADERS': docs_settings.TEMPLATE_LOADERS,
-        })
+        configure_kwargs.update(
+            {
+                "TEMPLATE_CONTEXT_PROCESSORS": docs_settings.TEMPLATE_CONTEXT_PROCESSORS,
+                "TEMPLATE_DIRS": docs_settings.TEMPLATE_DIRS,
+                "TEMPLATE_LOADERS": docs_settings.TEMPLATE_LOADERS,
+            }
+        )
 
     settings.configure(**configure_kwargs)
 
@@ -223,23 +231,23 @@ if not settings.configured:
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
+extensions = ["sphinx.ext.autodoc", "sphinx.ext.viewcode"]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # The suffix of source filenames.
-source_suffix = '.rst'
+source_suffix = ".rst"
 
 # The encoding of source files.
 # source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = "index"
 
 # General information about the project.
 # project = u'django-debug-toolbar-force'
-# copyright = u'2016, Artur Barseghyan <artur.barseghyan@gmail.com>'
+# copyright = u'2016-2022, Artur Barseghyan <artur.barseghyan@gmail.com>'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -263,7 +271,7 @@ release = version
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = ["_build"]
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 # default_role = None
@@ -280,7 +288,7 @@ exclude_patterns = ['_build']
 # show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = "sphinx"
 
 # A list of ignored prefixes for module index sorting.
 # modindex_common_prefix = []
@@ -290,7 +298,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = "default"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -319,7 +327,7 @@ html_theme = 'default'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -363,31 +371,31 @@ html_static_path = ['_static']
 # html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'django-debug-toolbar-forcedoc'
+htmlhelp_basename = "django-debug-toolbar-forcedoc"
 
 
 # -- Options for LaTeX output --------------------------------------------------
 
 latex_elements = {
-# The paper size ('letterpaper' or 'a4paper').
-# 'papersize': 'letterpaper',
-
-# The font size ('10pt', '11pt' or '12pt').
-# 'pointsize': '10pt',
-
-# Additional stuff for the LaTeX preamble.
-# 'preamble': '',
+    # The paper size ('letterpaper' or 'a4paper').
+    # 'papersize': 'letterpaper',
+    # The font size ('10pt', '11pt' or '12pt').
+    # 'pointsize': '10pt',
+    # Additional stuff for the LaTeX preamble.
+    # 'preamble': '',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass
 # [howto/manual]).
 latex_documents = [
-  ('index',
-   'django-debug-toolbar-force.tex',
-   u'django-debug-toolbar-force Documentation',
-   u'Artur Barseghyan \\textless{}artur.barseghyan@gmail.com\\textgreater{}',
-   'manual'),
+    (
+        "index",
+        "django-debug-toolbar-force.tex",
+        "django-debug-toolbar-force Documentation",
+        "Artur Barseghyan \\textless{}artur.barseghyan@gmail.com\\textgreater{}",
+        "manual",
+    ),
 ]
 
 # The name of an image file (relative to this directory) to place at the top
@@ -416,11 +424,13 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index',
-     'django-debug-toolbar-force',
-     u'django-debug-toolbar-force Documentation',
-     [u'Artur Barseghyan <artur.barseghyan@gmail.com>'],
-     1)
+    (
+        "index",
+        "django-debug-toolbar-force",
+        "django-debug-toolbar-force Documentation",
+        ["Artur Barseghyan <artur.barseghyan@gmail.com>"],
+        1,
+    )
 ]
 
 # If true, show URL addresses after external links.
@@ -433,12 +443,15 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'django-debug-toolbar-force',
-   u'django-debug-toolbar-force Documentation',
-   u'Artur Barseghyan <artur.barseghyan@gmail.com>',
-   'django-debug-toolbar-force',
-   "Force debugging of non-HTML views in django-debug-toolbar.",
-   'Miscellaneous'),
+    (
+        "index",
+        "django-debug-toolbar-force",
+        "django-debug-toolbar-force Documentation",
+        "Artur Barseghyan <artur.barseghyan@gmail.com>",
+        "django-debug-toolbar-force",
+        "Force debugging of non-HTML views in django-debug-toolbar.",
+        "Miscellaneous",
+    ),
 ]
 
 # Documents to append as an appendix to all manuals.
@@ -454,10 +467,10 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'django-debug-toolbar-force'
-epub_author = u'Artur Barseghyan <artur.barseghyan@gmail.com>'
-epub_publisher = u'Artur Barseghyan <artur.barseghyan@gmail.com>'
-epub_copyright = u'2016, Artur Barseghyan <artur.barseghyan@gmail.com>'
+epub_title = "django-debug-toolbar-force"
+epub_author = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+epub_publisher = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+epub_copyright = "2016-2022, Artur Barseghyan <artur.barseghyan@gmail.com>"
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.

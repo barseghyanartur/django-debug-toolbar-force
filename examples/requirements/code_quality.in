@@ -1,0 +1,7 @@
+pylint
+pycodestyle
+black
+ruff
+isort
+pre-commit
+pydocstyle

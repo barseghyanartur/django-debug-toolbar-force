@@ -29,8 +29,8 @@ Show ``django-debug-toolbar`` in non- or partial-HTML views.
 
 Prerequisites
 =============
-- Python 2.7, 3.5, 3.6, 3.7 and 3.8.
-- Django 1.8, 1.9, 1.10, 1.11, 2.0, 2.1, 2.2 and 3.0.
+- Python 3.7, 3.8, 3.9, 3.10 and 3.11.
+- Django 2.2, 3.0, 3.1, 3.2, 4.0 and 4.1.
 - django-debug-toolbar 1.5 (may work on earlier versions as well, although
   not guaranteed).
 
@@ -80,7 +80,7 @@ Simply type:
 
 .. code-block:: sh
 
-    ./runtests.py
+    pytest -vvv
 
 or use tox:
 
@@ -92,7 +92,7 @@ or use tox to check specific env:
 
 .. code-block:: sh
 
-    tox -e py36
+    tox -e py310
 
 License
 =======
@@ -100,7 +100,9 @@ GPL-2.0-only OR LGPL-2.1-or-later
 
 Support
 =======
-For any issues contact me at the e-mail given in the `Author`_ section.
+For any security issues contact me at the e-mail given in the `Author`_ section.
+
+For overall issues, go to `GitHub <https://github.com/barseghyanartur/django-debug-toolbar-force/issues>`_.
 
 Author
 ======

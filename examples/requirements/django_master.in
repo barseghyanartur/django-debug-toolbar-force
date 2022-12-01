@@ -1,0 +1,6 @@
+-r common.in
+-r test.in
+
+https://github.com/django/django/archive/master.tar.gz
+django-debug-toolbar>=3.5.0
+django-nine

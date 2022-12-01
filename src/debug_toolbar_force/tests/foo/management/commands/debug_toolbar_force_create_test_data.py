@@ -1,11 +1,8 @@
 from django.core.management.base import BaseCommand
 
-from ....helpers import (
-    get_or_create_admin_user,
-    create_test_data
-)
+from ....helpers import get_or_create_admin_user, create_test_data
 
-__all__ = ('Command',)
+__all__ = ("Command",)
 
 
 class Command(BaseCommand):
