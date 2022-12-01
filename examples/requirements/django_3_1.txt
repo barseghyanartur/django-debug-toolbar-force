@@ -19,7 +19,7 @@ django==3.1.14
     #   -r django_3_1.in
     #   django-debug-toolbar
     #   django-nine
-django-debug-toolbar==3.2.4
+django-debug-toolbar==3.0
     # via -r django_3_1.in
 django-nine==0.2.6
     # via -r django_3_1.in
