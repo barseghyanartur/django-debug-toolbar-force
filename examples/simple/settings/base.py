@@ -263,7 +263,7 @@ LOGGING = {
     },
     'root': {
         'level': 'INFO',
-        'handlers': ['all_log'],
+        'handlers': ['console'],
     },
     'formatters': {
         'verbose': {
