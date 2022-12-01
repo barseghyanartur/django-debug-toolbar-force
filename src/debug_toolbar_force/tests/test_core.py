@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 
 from django.test import TestCase, Client, override_settings
 from django.urls import reverse
-from django.utils.encoding import smart_text
+from django.utils.encoding import smart_str
 
 from ..conf import get_setting
 from ..settings import GET_PARAM_NAME_FORCE
@@ -56,7 +56,7 @@ class DebugToolbarForceCoreTest(TestCase):
         body_force = list(soup.find('body').children)[0]
 
         def canonic(txt):
-            return smart_text(txt).strip()
+            return smart_str(txt).strip()
 
         self.assertEqual(canonic(body_no_force), canonic(body_force))
 
