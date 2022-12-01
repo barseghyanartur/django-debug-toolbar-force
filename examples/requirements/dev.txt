@@ -81,8 +81,6 @@ filelock==3.8.0
     # via
     #   tox
     #   virtualenv
-flake8==6.0.0
-    # via -r common.in
 identify==2.5.9
     # via pre-commit
 idna==3.4
@@ -135,9 +133,7 @@ markupsafe==2.1.1
 matplotlib-inline==0.1.6
     # via ipython
 mccabe==0.7.0
-    # via
-    #   flake8
-    #   pylint
+    # via pylint
 more-itertools==9.0.0
     # via jaraco-classes
 mypy-extensions==0.4.3
@@ -191,15 +187,11 @@ py==1.11.0
     #   pytest
     #   tox
 pycodestyle==2.10.0
-    # via
-    #   -r code_quality.in
-    #   flake8
+    # via -r code_quality.in
 pycparser==2.21
     # via cffi
 pydocstyle==6.1.1
     # via -r common.in
-pyflakes==3.0.1
-    # via flake8
 pygments==2.13.0
     # via
     #   ipython
@@ -255,7 +247,9 @@ rst2pdf==0.99
 rstcheck==3.3.1
     # via -r docs.in
 ruff==0.0.150
-    # via -r code_quality.in
+    # via
+    #   -r code_quality.in
+    #   -r common.in
 secretstorage==3.3.3
     # via keyring
 six==1.16.0

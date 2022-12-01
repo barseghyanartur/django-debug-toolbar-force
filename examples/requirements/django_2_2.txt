@@ -59,8 +59,6 @@ filelock==3.8.0
     # via
     #   tox
     #   virtualenv
-flake8==6.0.0
-    # via -r common.in
 identify==2.5.9
     # via pre-commit
 idna==3.4
@@ -94,9 +92,7 @@ markupsafe==2.1.1
 matplotlib-inline==0.1.6
     # via ipython
 mccabe==0.7.0
-    # via
-    #   flake8
-    #   pylint
+    # via pylint
 nodeenv==1.7.0
     # via pre-commit
 packaging==21.3
@@ -132,12 +128,8 @@ py==1.11.0
     # via
     #   pytest
     #   tox
-pycodestyle==2.10.0
-    # via flake8
 pydocstyle==6.1.1
     # via -r common.in
-pyflakes==3.0.1
-    # via flake8
 pygments==2.13.0
     # via
     #   ipython
@@ -168,6 +160,8 @@ pyyaml==6.0
     # via pre-commit
 requests==2.28.1
     # via sphinx
+ruff==0.0.150
+    # via -r common.in
 six==1.16.0
     # via
     #   asttokens

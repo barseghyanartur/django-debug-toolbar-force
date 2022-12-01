@@ -8,6 +8,6 @@ ipython
 # Style checkers
 pydocstyle
 pylint
-flake8
+ruff
 isort
 pre-commit
