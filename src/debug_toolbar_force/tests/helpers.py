@@ -11,9 +11,8 @@ from .factories import (
     UserFactory,
 )
 
-__title__ = 'debug_toolbar_force.tests.helpers'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016-2020 Artur Barseghyan'
+__copyright__ = '2016-2022 Artur Barseghyan'
 __license__ = 'GPL-2.0-only OR LGPL-2.1-or-later'
 __all__ = (
     'create_test_data',

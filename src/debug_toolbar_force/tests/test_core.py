@@ -1,27 +1,16 @@
-# -*- coding: utf-8 -*-
-
-import unittest
-
 from bs4 import BeautifulSoup
 
 from django.test import TestCase, Client, override_settings
+from django.urls import reverse
 from django.utils.encoding import smart_text
-
-from django_nine.versions import DJANGO_GTE_1_10
 
 from ..conf import get_setting
 from ..settings import GET_PARAM_NAME_FORCE
 from .base import log_info
 from .helpers import setup_app
 
-if DJANGO_GTE_1_10:
-    from django.urls import reverse
-else:
-    from django.core.urlresolvers import reverse
-
-__title__ = 'debug_toolbar_force.tests.test_core'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016-2020 Artur Barseghyan'
+__copyright__ = '2016-2022 Artur Barseghyan'
 __license__ = 'GPL-2.0-only OR LGPL-2.1-or-later'
 __all__ = ('DebugToolbarForceCoreTest',)
 
@@ -120,7 +109,3 @@ class DebugToolbarForceCoreTest(TestCase):
             get_setting('GET_PARAM_NAME_NON_AJAX'),
             'dtf-non-ajax'
         )
-
-
-if __name__ == '__main__':
-    unittest.main()

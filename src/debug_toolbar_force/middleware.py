@@ -4,12 +4,10 @@ from django.utils.translation import gettext_lazy as _
 
 from django_nine.versions import DJANGO_GTE_1_10
 
-
 from .settings import GET_PARAM_NAME_FORCE, GET_PARAM_NAME_NON_AJAX
 
-__title__ = 'debug_toolbar_force.middleware'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016-2020 Artur Barseghyan'
+__copyright__ = '2016-2022 Artur Barseghyan'
 __license__ = 'GPL-2.0-only OR LGPL-2.1-or-later'
 __all__ = ('ForceDebugToolbarMiddleware',)
 

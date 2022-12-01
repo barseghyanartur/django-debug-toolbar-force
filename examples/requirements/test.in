@@ -1,0 +1,9 @@
+beautifulsoup4
+factory_boy
+Faker
+Pillow
+pytest-cov
+pytest-pythonpath
+pytest-django
+pytest
+tox

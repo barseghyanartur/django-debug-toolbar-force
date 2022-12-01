@@ -4,9 +4,8 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 
 
-__title__ = 'debug_toolbar_force.tests.foo.views'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016-2020 Artur Barseghyan'
+__copyright__ = '2016-2022 Artur Barseghyan'
 __license__ = 'GPL-2.0-only OR LGPL-2.1-or-later'
 __all__ = (
     'ajax_view',

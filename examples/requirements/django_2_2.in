@@ -1,0 +1,6 @@
+-r common.in
+-r test.in
+
+Django>=2.2,<2.3
+django-debug-toolbar>=1.6
+django-nine

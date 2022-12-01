@@ -1,4 +1,4 @@
-from factory import DjangoModelFactory
+from factory.django import DjangoModelFactory
 
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -7,7 +7,7 @@ from .factory_faker import Faker
 
 __title__ = 'debug_toolbar_force.tests.factories.sites_site'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2016-2020 Artur Barseghyan'
+__copyright__ = '2016-2022 Artur Barseghyan'
 __license__ = 'GPL-2.0-only OR LGPL-2.1-or-later'
 __all__ = (
     'SiteFactory',

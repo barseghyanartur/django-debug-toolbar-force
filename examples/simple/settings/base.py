@@ -2,7 +2,7 @@
 import os
 import sys
 
-from nine import versions
+from django_nine import versions
 
 from .core import PROJECT_DIR, gettext, show_toolbar
 
@@ -285,54 +285,27 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         },
-        'all_log': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': PROJECT_DIR("../../logs/all.log"),
-            'maxBytes': 1048576,
-            'backupCount': 99,
-            'formatter': 'verbose',
-        },
-        'django_log': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': PROJECT_DIR("../../logs/django.log"),
-            'maxBytes': 1048576,
-            'backupCount': 99,
-            'formatter': 'verbose',
-        },
-        'django_request_log': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': PROJECT_DIR("../../logs/django_request.log"),
-            'maxBytes': 1048576,
-            'backupCount': 99,
-            'formatter': 'verbose',
-        },
-        'debug_toolbar_force_log': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': PROJECT_DIR("../../logs/debug_toolbar_force.log"),
-            'maxBytes': 1048576,
-            'backupCount': 99,
-            'formatter': 'verbose',
-        },
     },
     'loggers': {
-        'django.request': {
-            'handlers': ['django_request_log'],
+        "": {
+            'handlers': ['console'],
             'level': 'INFO',
-            'propagate': True,
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
         },
         'django': {
-            'handlers': ['django_log'],
+            'handlers': ['console'],
             'level': 'ERROR',
             'propagate': False,
         },
         'debug_toolbar_force': {
-            'handlers': ['console', 'debug_toolbar_force_log'],
+            'handlers': ['console'],
             'level': 'DEBUG',
-            'propagate': True,
+            'propagate': False,
         },
     },
 }

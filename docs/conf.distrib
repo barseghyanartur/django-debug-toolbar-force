@@ -31,7 +31,7 @@ try:
 except Exception as err:
     version = '0.1'
     project = u'django-debug-toolbar-force'
-    copyright = u'2016, Artur Barseghyan <artur.barseghyan@gmail.com>'
+    copyright = u'2016-2022, Artur Barseghyan <artur.barseghyan@gmail.com>'
 
 # -- Django configuration ------------------------------------------------------
 
@@ -239,7 +239,7 @@ master_doc = 'index'
 
 # General information about the project.
 # project = u'django-debug-toolbar-force'
-# copyright = u'2016, Artur Barseghyan <artur.barseghyan@gmail.com>'
+# copyright = u'2016-2022, Artur Barseghyan <artur.barseghyan@gmail.com>'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -457,7 +457,7 @@ texinfo_documents = [
 epub_title = u'django-debug-toolbar-force'
 epub_author = u'Artur Barseghyan <artur.barseghyan@gmail.com>'
 epub_publisher = u'Artur Barseghyan <artur.barseghyan@gmail.com>'
-epub_copyright = u'2016, Artur Barseghyan <artur.barseghyan@gmail.com>'
+epub_copyright = u'2016-2022, Artur Barseghyan <artur.barseghyan@gmail.com>'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.

@@ -1,7 +1,9 @@
 
-Docs
-====
+Project documentation
+=====================
 Contents:
+
+.. contents:: Table of Contents
 
 .. toctree::
    :maxdepth: 20

@@ -8,21 +8,21 @@ try:
 except:
     readme = ''
 
-version = '0.1.8'
+version = '0.2'
 
 install_requires = [
-    'six>=1.4.1',
     'django-nine>=0.2.3',
 ]
 
 tests_require = [
     'beautifulsoup4',
     'factory_boy',
-    'fake-factory',
+    'Faker',
     'Pillow',
     'pytest',
     'pytest-django',
     'pytest-cov',
+    'pytest-pythonpath',
     'tox'
 ]
 
@@ -33,12 +33,18 @@ setup(
                 "django-debug-toolbar.",
     long_description=readme,
     classifiers=[
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Framework :: Django",
+        "Framework :: Django :: 2.2",
+        "Framework :: Django :: 3.0",
+        "Framework :: Django :: 3.1",
+        "Framework :: Django :: 3.2",
+        "Framework :: Django :: 4.0",
+        "Framework :: Django :: 4.1",
         "Environment :: Web Environment",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "License :: OSI Approved :: GNU Lesser General Public License v2 or "
@@ -52,6 +58,15 @@ setup(
     author='Artur Barseghyan',
     author_email='artur.barseghyan@gmail.com',
     url='https://github.com/barseghyanartur/django-debug-toolbar-force/',
+    project_urls={
+        "Bug Tracker": "https://github.com/barseghyanartur/"
+                       "django-debug-toolbar-force/",
+        "Documentation": "https://django-debug-toolbar-force.readthedocs.io/",
+        "Source Code": "https://github.com/barseghyanartur/"
+                       "django-debug-toolbar-force/",
+        "Changelog": "https://django-debug-toolbar-force.readthedocs.io/"
+                     "en/latest/changelog.html",
+    },
     package_dir={'': 'src'},
     packages=find_packages(where='./src'),
     license='GPL-2.0-only OR LGPL-2.1-or-later',
