@@ -39,10 +39,15 @@ except Exception as err:
 try:
     from simple.settings import docs as docs_settings
 except Exception as err:
-    PROJECT_DIR = lambda base: os.path.abspath(
-        os.path.join(os.path.dirname(__file__), base).replace("\\", "/")
-    )
-    gettext = lambda s: s
+
+    def PROJECT_DIR(base):
+        return os.path.abspath(
+            os.path.join(os.path.dirname(__file__), base).replace("\\", "/")
+        )
+
+    def gettext(s):
+        return s
+
     DEBUG_TEMPLATE = False
     # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
