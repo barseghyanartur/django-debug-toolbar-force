@@ -31,6 +31,9 @@ pip-compile django_4_0.in "$@" --resolver=backtracking
 echo "pip-compile django_4_1.in"
 pip-compile django_4_1.in "$@" --resolver=backtracking
 
+echo "pip-compile django_master.in"
+pip-compile django_master.in "$@" --resolver=backtracking
+
 echo "pip-compile docs.in"
 pip-compile docs.in "$@" --resolver=backtracking
 
