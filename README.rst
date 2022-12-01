@@ -11,8 +11,8 @@ Show ``django-debug-toolbar`` in non- or partial-HTML views.
     :target: https://pypi.python.org/pypi/django-debug-toolbar-force/
     :alt: Supported Python versions
 
-.. image:: https://img.shields.io/travis/barseghyanartur/django-debug-toolbar-force/master.svg
-   :target: http://travis-ci.org/barseghyanartur/django-debug-toolbar-force
+.. image:: https://github.com/barseghyanartur/django-debug-toolbar-force/workflows/test/badge.svg
+   :target: https://github.com/barseghyanartur/django-debug-toolbar-force/actions?query=workflow%3Atest
    :alt: Build Status
 
 .. image:: https://readthedocs.org/projects/django-debug-toolbar-force/badge/?version=latest
