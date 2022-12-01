@@ -19,6 +19,7 @@ are used for versioning (schema follows below):
 ---
 2022-12-01
 
+- Fix deprecations.
 - Drop support for Python 2.7, 3.4, 3.5 and 3.6.
 - Drop support for Django 1.8, 1.9, 2.0 and 2.1.
 - Tested against Python 3.9, 3.10 and 3.11.
