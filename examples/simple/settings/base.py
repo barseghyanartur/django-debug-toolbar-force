@@ -1,8 +1,5 @@
 # Django settings for example project.
 import os
-import sys
-
-from django_nine import versions
 
 from .core import PROJECT_DIR, gettext, show_toolbar
 
@@ -112,111 +109,43 @@ SECRET_KEY = "97818c*w97Zi8a-m^1coRRrmurMI6+q5_kyn*)s@(*_Pk6q423"
 
 try:
     from .local_settings import DEBUG_TEMPLATE
-except Exception as err:
+except Exception:
     DEBUG_TEMPLATE = False
 
-if versions.DJANGO_GTE_1_10:
-    TEMPLATES = [
-        {
-            "BACKEND": "django.template.backends.django.DjangoTemplates",
-            # 'APP_DIRS': True,
-            "DIRS": [PROJECT_DIR(os.path.join("..", "templates"))],
-            "OPTIONS": {
-                "context_processors": [
-                    "django.template.context_processors.debug",
-                    "django.template.context_processors.request",
-                    "django.contrib.auth.context_processors.auth",
-                    "django.contrib.messages.context_processors.messages",
-                    # "context_processors.testing",  # Testing
-                ],
-                "loaders": [
-                    "django.template.loaders.filesystem.Loader",
-                    "django.template.loaders.app_directories.Loader",
-                    # 'django.template.loaders.eggs.Loader',
-                ],
-                "debug": DEBUG_TEMPLATE,
-            },
+
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        # 'APP_DIRS': True,
+        "DIRS": [PROJECT_DIR(os.path.join("..", "templates"))],
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                # "context_processors.testing",  # Testing
+            ],
+            "loaders": [
+                "django.template.loaders.filesystem.Loader",
+                "django.template.loaders.app_directories.Loader",
+                # 'django.template.loaders.eggs.Loader',
+            ],
+            "debug": DEBUG_TEMPLATE,
         },
-    ]
-elif versions.DJANGO_GTE_1_8:
-    TEMPLATES = [
-        {
-            "BACKEND": "django.template.backends.django.DjangoTemplates",
-            # 'APP_DIRS': True,
-            "DIRS": [PROJECT_DIR(os.path.join("..", "templates"))],
-            "OPTIONS": {
-                "context_processors": [
-                    "django.contrib.auth.context_processors.auth",
-                    "django.template.context_processors.debug",
-                    "django.template.context_processors.i18n",
-                    "django.template.context_processors.media",
-                    "django.template.context_processors.static",
-                    "django.template.context_processors.tz",
-                    "django.contrib.messages.context_processors.messages",
-                    "django.template.context_processors.request",
-                    # "context_processors.testing",  # Testing
-                ],
-                "loaders": [
-                    "django.template.loaders.filesystem.Loader",
-                    "django.template.loaders.app_directories.Loader",
-                    "django.template.loaders.eggs.Loader",
-                ],
-                "debug": DEBUG_TEMPLATE,
-            },
-        },
-    ]
-else:
-    TEMPLATE_DEBUG = DEBUG_TEMPLATE
+    },
+]
 
-    # List of callables that know how to import templates from various
-    # sources.
-    TEMPLATE_LOADERS = (
-        "django.template.loaders.filesystem.Loader",
-        "django.template.loaders.app_directories.Loader",
-        "django.template.loaders.eggs.Loader",
-    )
-
-    TEMPLATE_CONTEXT_PROCESSORS = (
-        "django.contrib.auth.context_processors.auth",
-        "django.core.context_processors.debug",
-        "django.core.context_processors.i18n",
-        "django.core.context_processors.media",
-        "django.core.context_processors.static",
-        "django.core.context_processors.tz",
-        "django.contrib.messages.context_processors.messages",
-        "django.core.context_processors.request",
-    )
-
-    TEMPLATE_DIRS = (
-        # Put strings here, like "/home/html/django_templates" or
-        # "C:/www/django/templates".
-        # Always use forward slashes, even on Windows.
-        # Don't forget to use absolute paths, not relative paths.
-        PROJECT_DIR(os.path.join("..", "templates")),
-    )
-
-if versions.DJANGO_GTE_1_10:
-    MIDDLEWARE = [
-        "django.contrib.sessions.middleware.SessionMiddleware",
-        "django.middleware.locale.LocaleMiddleware",
-        "django.middleware.common.CommonMiddleware",
-        "django.middleware.csrf.CsrfViewMiddleware",
-        "django.contrib.auth.middleware.AuthenticationMiddleware",
-        "django.contrib.messages.middleware.MessageMiddleware",
-        # Uncomment the next line for simple clickjacking protection:
-        # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    ]
-else:
-    MIDDLEWARE_CLASSES = [
-        "django.contrib.sessions.middleware.SessionMiddleware",
-        "django.middleware.locale.LocaleMiddleware",
-        "django.middleware.common.CommonMiddleware",
-        "django.middleware.csrf.CsrfViewMiddleware",
-        "django.contrib.auth.middleware.AuthenticationMiddleware",
-        "django.contrib.messages.middleware.MessageMiddleware",
-        # Uncomment the next line for simple clickjacking protection:
-        # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    ]
+MIDDLEWARE = [
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    # Uncomment the next line for simple clickjacking protection:
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
 
 ROOT_URLCONF = "urls"
 

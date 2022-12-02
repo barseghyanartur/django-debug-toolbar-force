@@ -12,16 +12,11 @@ if DEBUG and DEBUG_TOOLBAR:
         import debug_toolbar
 
         # debug_toolbar
-        if versions.DJANGO_GTE_1_10:
-            MIDDLEWARE += (
-                "debug_toolbar.middleware.DebugToolbarMiddleware",
-                "debug_toolbar_force.middleware.ForceDebugToolbarMiddleware",
-            )
-        else:
-            MIDDLEWARE_CLASSES += (
-                "debug_toolbar.middleware.DebugToolbarMiddleware",
-                "debug_toolbar_force.middleware.ForceDebugToolbarMiddleware",
-            )
+
+        MIDDLEWARE += (
+            "debug_toolbar.middleware.DebugToolbarMiddleware",
+            "debug_toolbar_force.middleware.ForceDebugToolbarMiddleware",
+        )
 
         INSTALLED_APPS += ("debug_toolbar",)
 
@@ -31,11 +26,3 @@ if DEBUG and DEBUG_TOOLBAR:
         }
     except ImportError:
         pass
-
-# Make the `django-debug-toolbar-force` package available without
-# installation.
-if DEV:
-    debug_toolbar_force_source_path = os.environ.get(
-        "DEBUG_TOOLBAR_FORCE_SOURCE_PATH", "src"
-    )
-    sys.path.insert(0, os.path.abspath(debug_toolbar_force_source_path))
