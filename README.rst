@@ -31,8 +31,7 @@ Prerequisites
 =============
 - Python 3.7, 3.8, 3.9, 3.10 and 3.11.
 - Django 2.2, 3.0, 3.1, 3.2, 4.0 and 4.1.
-- django-debug-toolbar 1.5 (may work on earlier versions as well, although
-  not guaranteed).
+- django-debug-toolbar (version depends on your Django version).
 
 Documentation
 =============
@@ -53,16 +52,15 @@ Installation
 
         pip install https://github.com/barseghyanartur/django-debug-toolbar-force/archive/stable.tar.gz
 
-(2) Add ``debug_toolbar_force.middleware.ForceDebugToolbarMiddleware`` to
-    ``MIDDLEWARE`` (or ``MIDDLEWARE_CLASSES`` for older versions of Django)
-    of the your projects' Django settings (you would
+(2) Add ``debug_toolbar_force.middleware.ForceDebugToolbarMiddleware``
+    to ``MIDDLEWARE`` of the your projects' Django settings (you would
     typically do that in your dev settings only).
 
     .. code-block:: python
 
         MIDDLEWARE += (
-            'debug_toolbar.middleware.DebugToolbarMiddleware',
-            'debug_toolbar_force.middleware.ForceDebugToolbarMiddleware',
+            "debug_toolbar.middleware.DebugToolbarMiddleware",
+            "debug_toolbar_force.middleware.ForceDebugToolbarMiddleware",
         )
 
 Usage
@@ -73,6 +71,13 @@ end.
 .. code-block:: text
 
     GET http://localhost:8000/foo/json-view/?debug-toolbar
+
+Could be extremely handy for optimising endpoints of the Django REST Framework
+using browsable API.
+
+.. code-block:: text
+
+    GET http://localhost:8000/api/some-drf-endpoint/?format=json&debug-toolbar
 
 Testing
 =======
