@@ -197,7 +197,7 @@ if not settings.configured:
         "INSTALLED_APPS": docs_settings.INSTALLED_APPS,
         "MEDIA_ROOT": docs_settings.MEDIA_ROOT,
         "MEDIA_URL": docs_settings.MEDIA_URL,
-        "MIDDLEWARE_CLASSES": docs_settings.MIDDLEWARE_CLASSES,
+        "MIDDLEWARE": docs_settings.MIDDLEWARE,
         "ROOT_URLCONF": docs_settings.ROOT_URLCONF,
         "SECRET_KEY": docs_settings.SECRET_KEY,
         "SITE_ID": docs_settings.SITE_ID,
@@ -205,18 +205,8 @@ if not settings.configured:
         "STATICFILES_FINDERS": docs_settings.STATICFILES_FINDERS,
         "STATIC_URL": docs_settings.STATIC_URL,
         "STATIC_ROOT": docs_settings.STATIC_ROOT,
+        "TEMPLATES": docs_settings.TEMPLATES
     }
-
-    if versions.DJANGO_GTE_1_8:
-        configure_kwargs.update({"TEMPLATES": docs_settings.TEMPLATES})
-    else:
-        configure_kwargs.update(
-            {
-                "TEMPLATE_CONTEXT_PROCESSORS": docs_settings.TEMPLATE_CONTEXT_PROCESSORS,
-                "TEMPLATE_DIRS": docs_settings.TEMPLATE_DIRS,
-                "TEMPLATE_LOADERS": docs_settings.TEMPLATE_LOADERS,
-            }
-        )
 
     settings.configure(**configure_kwargs)
 
