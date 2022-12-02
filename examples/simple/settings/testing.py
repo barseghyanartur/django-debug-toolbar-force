@@ -21,6 +21,7 @@ if DEBUG and DEBUG_TOOLBAR:
     try:
         # Make sure the django-debug-toolbar is installed
         import debug_toolbar
+
         MIDDLEWARE += (
             "debug_toolbar.middleware.DebugToolbarMiddleware",
             "debug_toolbar_force.middleware.ForceDebugToolbarMiddleware",

@@ -14,7 +14,7 @@
 import os
 import sys
 
-from nine import versions
+from django_nine import versions
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -23,8 +23,9 @@ from nine import versions
 sys.path.insert(0, os.path.abspath("../src"))
 sys.path.insert(0, os.path.abspath("../examples"))
 try:
-    import debug_toolbar_force
     from simple import settings as docs_settings
+
+    import debug_toolbar_force
 
     version = debug_toolbar_force.__version__
     project = debug_toolbar_force.__title__

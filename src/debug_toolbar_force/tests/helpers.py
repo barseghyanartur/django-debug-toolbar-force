@@ -1,15 +1,7 @@
 from django.core.management import call_command
 
-from .base import (
-    is_app_setup_completed,
-    mark_app_setup_as_completed,
-)
-
-from .factories import (
-    SiteFactory,
-    SuperAdminUserFactory,
-    UserFactory,
-)
+from .base import is_app_setup_completed, mark_app_setup_as_completed
+from .factories import SiteFactory, SuperAdminUserFactory, UserFactory
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2016-2022 Artur Barseghyan"

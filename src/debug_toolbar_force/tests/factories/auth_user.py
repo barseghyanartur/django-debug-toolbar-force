@@ -1,5 +1,4 @@
 from django.conf import settings
-
 from factory import PostGenerationMethodCall, Sequence
 from factory.django import DjangoModelFactory
 

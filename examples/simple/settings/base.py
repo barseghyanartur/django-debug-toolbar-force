@@ -3,7 +3,6 @@ import os
 
 from .core import PROJECT_DIR, gettext, show_toolbar
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
